@@ -1,0 +1,17 @@
+{
+    "name": "laravel-liberu/auth",
+    "description": "Standardizes and streamlines authentication across all projects in the organization, providing a robust, customizable, and secure authentication solution",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "LaravelLiberu\\Auth\\": "src/",
+            "LaravelLiberu\\Auth\\Database\\Factories\\": "database/factories/",
+            "LaravelLiberu\\Auth\\Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "require-dev": {
+        "laravel/framework": "^8.0"
+       
+    }
+}
