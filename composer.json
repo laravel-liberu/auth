@@ -2,7 +2,14 @@
     "name": "laravel-liberu/auth",
     "description": "Standardizes and streamlines authentication across all projects in the organization, providing a robust, customizable, and secure authentication solution",
     "type": "library",
+    "homepage": "https://github.com/laravel-liberu/auth",
     "license": "MIT",
+    "authors": [
+        {
+            "name": "Liberu",
+            "email": "office@liberu.co.uk"
+        }],
+
     "autoload": {
         "psr-4": {
             "LaravelLiberu\\Auth\\": "src/",
