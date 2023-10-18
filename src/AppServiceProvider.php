@@ -50,7 +50,6 @@ class AppServiceProvider extends ServiceProvider
 
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
 
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'laravel-liberu/core');
 
         return $this;
     }

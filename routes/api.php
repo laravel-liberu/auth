@@ -10,16 +10,6 @@ use LaravelLiberu\Auth\Http\Controllers\Auth\ResetPasswordController;
 use LaravelLiberu\Auth\Http\Controllers\Auth\ForgotPasswordController;
 
 
-Route::prefix('api')
-    ->group(function () {
-        Route::get('/meta', Guest::class)->name('meta');
-
-        require __DIR__.'/app/auth.php';
-
-        Route::middleware(['api', 'auth', 'core'])
-            ->group(fn () => require __DIR__.'/app/core.php');
-    });
-
     Route::middleware('api')
     ->group(function () {
         Route::middleware('guest')->group(function () {
