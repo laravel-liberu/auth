@@ -5,7 +5,6 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Route;
 use LaravelLiberu\Auth\Http\Controllers\Guest;
 use LaravelLiberu\Auth\Http\Controllers\Auth\LoginController;
-use LaravelLiberu\Auth\Http\Controllers\Auth\RegisterController;
 use LaravelLiberu\Auth\Http\Controllers\Auth\ResetPasswordController;
 use LaravelLiberu\Auth\Http\Controllers\Auth\ForgotPasswordController;
 
@@ -13,8 +12,6 @@ use LaravelLiberu\Auth\Http\Controllers\Auth\ForgotPasswordController;
     Route::middleware('api')
     ->group(function () {
         Route::middleware('guest')->group(function () {
-            Route::post('login', [LoginController::class, 'login'])
-                ->name('login');
             Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])
                 ->name('password.email');
             Route::post('password/reset', [ResetPasswordController::class, 'attemptReset'])
@@ -31,9 +28,9 @@ use LaravelLiberu\Auth\Http\Controllers\Auth\ForgotPasswordController;
     ->middleware('api')
     ->group(function () {
         Route::middleware('guest')->group(function () {
-            Route::get('login/{provider}', fn($provider) => (new LoginController())->redirectToProvider($provider));
-            Route::get('login/{provider}/callback', fn($provider): JsonResponse => (new LoginController())->providerCallback($provider));
             Route::post('login', fn(Request $request) => (new LoginController())->login($request));
+            Route::get('login/{provider}', fn($provider) => (new LoginController())->redirectToProvider($provider));
+            Route::get('login/{provider}/callback', fn($provider) => (new LoginController())->handleProviderCallback($provider));
         });
 
         Route::middleware('auth')->group(function () {
@@ -41,7 +38,7 @@ use LaravelLiberu\Auth\Http\Controllers\Auth\ForgotPasswordController;
         });
         Route::post('confirm_checkout', fn(Request $request) => (new LoginController())->confirmSubscription($request));
 
-        Route::post('register', [RegisterController::class, 'create']);
+        // Route::post('register', [RegisterController::class, 'create']);
         //  Route::get('get-subscription-plan', [RegisterController::class, 'getSubscriptionPlan']);
         // Route::post('verify', [RegisterController::class, 'verify_user']);
     });
