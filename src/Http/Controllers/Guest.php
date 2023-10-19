@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelLiberu\Core\Http\Controllers;
+namespace LaravelLiberu\Auth\Http\Controllers;
 
 use Illuminate\Routing\Controller;
 use LaravelLiberu\Core\Http\Responses\GuestState;
