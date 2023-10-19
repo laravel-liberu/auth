@@ -13,8 +13,8 @@ use LaravelLiberu\Auth\Http\Controllers\Auth\ForgotPasswordController;
     Route::middleware('api')
     ->group(function () {
         Route::middleware('guest')->group(function () {
-         //   Route::post('login', [LoginController::class, 'login'])
-         //      ->name('login');
+            Route::post('login', [LoginController::class, 'login'])
+                ->name('login');
             Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])
                 ->name('password.email');
             Route::post('password/reset', [ResetPasswordController::class, 'attemptReset'])
