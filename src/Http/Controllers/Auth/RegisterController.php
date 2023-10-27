@@ -68,21 +68,6 @@ class RegisterController extends Controller
             'is_active' => 1,
         ]);
 
-        $company = Company::create([
-            'name' => $request['email'],
-            'email' => $request['email'],
-            'is_tenant' => 1,
-            'status' => 1,
-        ]);
-
-        $person->companies()->attach($company->id, ['person_id' => $person->id, 'is_main' => 1, 'is_mandatary' => 1, 'company_id' => $company->id]);
-
-        if ($request->selected_plan === '' || $request->selected_plan === $user->role_id) {
-            $user->plan_id = '';
-        } else {
-            $user->plan_id = $request->selected_plan;
-        }
-
         return $user;
     }
 }
